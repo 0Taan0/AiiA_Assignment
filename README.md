@@ -1,80 +1,74 @@
-# Ai in Action Project 
+# Transformer-Based Models Implementation
 
-## Project Structure
-This document provides an overview of the project directory structure and the purpose of each folder and file. Use this as a guide to navigate and understand the project organization.
-
----
-
-### Directory Overview
-
-#### **`00. Data`**
-- **Purpose**: Contains the raw datasets used for the project.
-- **Content**: Original, unprocessed data files that are critical for reproducibility.
-
-#### **`01.-02.-03.-04. Data Exploration - Cleansing`**
-- **Purpose**: Houses scripts and documentation related to the processes of data exploration, cleaning, and preprocessing.
-- **Content**:
-  - Notebooks or scripts detailing:
-    - Initial data exploration.
-    - Data cleansing techniques.
-    - Handling of missing values and outliers.
-    - Feature engineering steps.
-
-#### **`05. Representation Techniques & Classic Models`**
-- **Purpose**: Focuses on data representation methods and the implementation of classic machine learning models.
-- **Content**:
-  - Scripts or notebooks demonstrating representation techniques (e.g., PCA, t-SNE, etc.).
-  - Implementation of classic models such as:
-    - Linear Regression
-    - Support Vector Machines (SVMs)
-    - Decision Trees
-
-#### **`06. Modelling of Data`**
-- **Purpose**: Contains advanced modeling efforts, such as RNN's and Transformer models.
-- **Content**:
-  - Model training scripts.
-  - Hyperparameter optimization workflows.
-  - Results of experiments and performance metrics.
-
-#### **`07. Comparison Results`**
-- **Purpose**: Documents the comparison and analysis of various models and techniques used in the project.
-- **Content**:
-  - Summary of results.
-  - Visualizations and charts.
-  - Reports highlighting key findings.
-
-#### **`functions` (Python Source File)**
-- **Purpose**: A Python source file containing reusable functions and utilities for the project.
-- **Content**:
-  - Helper functions for:
-    - Data processing
-    - Visualization
-    - Analysis
-  - Modularized scripts to simplify workflows.
+## Overview
+This chapter focuses on the implementation of Transformer-based models, with a particular emphasis on various BERT models. The motivation for this choice stems from several key factors:
+- **Task Alignment**: BERT's tasks, Next Sentence Prediction and Masked Language Modeling (Amatriain et al., 2024), align closely with our objective: predicting negotiation outcomes.
+- **Open-Source Availability**: BERT is an open-source model and one of the earliest Transformer-based architectures, making it widely accessible.
+- **Abundance of Pretrained Models**: Numerous fine-tuned BERT models are readily available, such as those on [Huggingface](https://huggingface.co/).
+- **Dominance in Text Classification**: The sheer number of BERT models outpaces other Transformer-based models in the text classification category.
 
 ---
 
-### Usage Guidelines
+## Challenges and Focus
+While efforts were made to implement other Transformer models, such as GPT, hardware limitations posed significant challenges:
+- Even with access to the **BW-Uni-Cluster**, memory errors occurred due to high computational demands.
+- Limited cluster access time further constrained experimentation.
 
-#### **Getting Started**
-1. Begin with the **`00. Data`** folder to understand the raw datasets.
-2. Proceed to **`01.-02.-03.-04. Data Exploration - Cleansing`** for preprocessing workflows.
-
-#### **Model Development**
-- Refer to **`05. Representation Techniques & Classic Models`** for foundational models and representations.
-- Utilize **`06. Modelling of Data`** for advanced techniques of the RNN and Transformer models.
-
-#### **Evaluation**
-- Use the **`Comparison Results`** folder to analyze the performance and choose the best approach.
-
-#### **Utilities**
-- Leverage the **`functions`** file for reusable scripts to streamline your work.
+As a result, the focus shifted to BERT models, which were more feasible given the hardware and time constraints.
 
 ---
 
-### Notes
-- Keep all files and scripts well-documented to maintain clarity.
-- Ensure reproducibility by providing any necessary environment or package requirements (e.g., `requirements.txt`).
+## Model Implementation
+### Key Points
+1. **File Structure**: The files for the different models are organized similarly, varying primarily in the specific model used.
+2. **Training Runs**: Each model was trained twice:
+   - **5 epochs**
+   - **10 epochs**
+3. **Storage**: Each training run is stored in a separate file due to memory and timeslot limitations on the cluster.
+4. **File Naming**: Files are named after the model and the number of epochs (e.g., `DistilBert_5epochs.ipynb` and `DistilBert_10epochs.ipynb`).
+5. **Explanations**: Each file contains:
+   - A brief explanation of the model and rationale for its use at the top.
+   - Results and interpretation of the model's performance at the bottom.
+
+### Hyperparameter Tuning
+Due to computational constraints, hyperparameter tuning was not feasible.
+
 ---
 
-### Contact
+## Models Used
+The following five BERT-based models were implemented in the specified order:
+1. **DistilBert** (5 epochs, 10 epochs)
+2. **DistilRoberta-base** (5 epochs, 10 epochs)
+3. **Finbert** (5 epochs, 10 epochs)
+4. **DistilRoberta-financial** (5 epochs, 10 epochs)
+5. **Finbert-Sentiment** (5 epochs, 10 epochs)
+
+- Each file includes observations unique to the model and its results.
+
+---
+
+## Results and Evaluation
+- The results for all models were saved and analyzed in the file `Transformers_comparison.ipynb`.
+- **Key Considerations**:
+  - The computational effort required for training these models was significant.
+  - Training was only possible due to access to the **BW-Uni-Cluster**.
+
+---
+
+## Folder and File Descriptions
+
+### **Folders**
+- **`evaluation_files`**: Contains the saved performances of the different models.
+- **`df_complete_clensing`**: This dataset is identical to `clensed_data` but renamed for clarity.
+
+### **Files**
+- Individual files for each model and training run (e.g., `DistilBert_5epochs.ipynb`).
+- `Transformers_comparison.ipynb`: A comprehensive comparison of model performances.
+
+---
+
+## Notes
+- Ensure all files are well-documented for clarity and reproducibility.
+- High-performance hardware is recommended for running these models due to their computational demands.
+
+---
